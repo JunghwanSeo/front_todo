@@ -1,0 +1,92 @@
+spring:
+    profiles:
+        active: prod
+    datasource:
+        hikari:
+            maximum-pool-size: 10
+            connection-test-query: SELECT 1
+
+jasypt:
+    encryptor:
+        bean: StringEncryptor
+        password: ${IDUS_TEST_JASYPT_KEY}
+---
+
+server:
+    port: 8090
+    
+---
+
+spring:
+    profiles: prod
+    servlet:
+        multipart:
+            enabled: true
+            resolve-lazily: true
+            location: C:\data
+            max-file-size: 1GB
+            max-request-size: 1GB
+    task:
+        excution:
+            pool:
+                core-size: 10
+                max-size: 10
+                queue-capacity: 50
+    datasource:
+        driver-class-name: org.mariadb.jdbc.Driver
+        url: ENC(M78ukd4XIttmcBck4Dhp7TKlyvOeKP3RK5S7JjpdCAPRDeWkug4yZHSKG3YzaYWHzhUAXrHL4qFqcglHgpNILGXS6glXetuIWrarNnQOlw8ViOGQrl1drRK6A96F5q6mHvRWHY7Pxc0=)
+        hikari:
+            username: ENC(haB/BB0kaeq6aPTMcpNAkw==)
+            password: ENC(pb69kE6QN/U0+H4Yw+NNP5sZxy2eJoB3)
+    jpa:
+        hibernate:
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+            ddl-auto: none
+        show-sql: true
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        properties:
+            hibernate:
+                format-sql: false
+                use-sql-commants: true
+encrypt:
+    hmac:
+        key: ENC(kbxK58Y2lW/NrUt5SV6qXOIUzJc0mglEHvmkLeKd70E=)
+
+---
+
+spring:
+    profiles: local
+    servlet:
+        multipart:
+            enabled: true
+            resolve-lazily: true
+            location: C:\data
+            max-file-size: 1GB
+            max-request-size: 1GB
+    task:
+        excution:
+            pool:
+                core-size: 10
+                max-size: 10
+                queue-capacity: 50
+    datasource:
+        driver-class-name: org.mariadb.jdbc.Driver
+        url: jdbc:mariadb://localhost:3306/idus_test?serverTimezone=UTC&characterEncoding=UTF-8
+        hikari:
+            username: idus_test
+            password: localDB_Key2022
+    jpa:
+        hibernate:
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+            ddl-auto: create
+        show-sql: true
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        properties:
+            hibernate:
+                format-sql: false
+                use-sql-commants: true
+encrypt:
+    hmac:
+        key: passwordHash_Key2022

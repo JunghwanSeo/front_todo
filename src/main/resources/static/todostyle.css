@@ -1,0 +1,54 @@
+body{
+    margin: 0;
+    background: beige;
+    background-size: cover;
+}
+
+/**
+ * vh(View Height)는 내가 현재 보고 있는 화면의 높이를 의미(100vh == 내가 보는 화면높이 100%)
+ *
+ * Box shadow CSS
+ * https://getcssscan.com/css-box-shadow-examples
+ */
+.container{
+    background: white;
+    min-height: 100vh;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.secTask{
+    border: 1px solid lightgray ;
+    margin-top: 2em;
+}
+.divTabs{
+    display: flex;
+    border-bottom: 1px solid lightgray ;
+    position: relative;
+}
+.divTabs div{
+    padding: 1em;
+    cursor: pointer;
+}
+
+#divTabsUnderLine{
+    height: 4px;
+    background-color: lightcoral;
+    position: absolute;
+    width: 65px;
+    left: 0px;
+    top: 52px;
+    padding: 0px;
+}
+
+.divTodoDetail{
+    display: flex;
+    justify-content: space-between;
+}
+
+.secInputBox{
+    display: flex;
+    justify-content: space-between;
+}
+
+.taskComplete{
+    text-decoration: line-through;
+}
